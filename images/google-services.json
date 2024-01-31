@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "522355831556",
+    "project_id": "good-to-go-aea90",
+    "storage_bucket": "good-to-go-aea90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522355831556:android:b1ca0ea6ce08211b1e1651",
+        "android_client_info": {
+          "package_name": "com.example.try_one"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522355831556-ju6v3heok9hftoo0tiqnkpb55p6fecr9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5jwiyMtUhnWVzYTR1MspOBejpBXgDcv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522355831556-ju6v3heok9hftoo0tiqnkpb55p6fecr9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
