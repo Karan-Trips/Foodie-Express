@@ -17,8 +17,8 @@ class _SignUpPageState extends State<SignUpPage> {
   String _name = '';
   String _email = '';
   String _password = '';
-  
-  void _performSignUp() async {
+
+  Future<void> _performSignUp() async {
     try {
       UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -158,7 +158,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     color: Colors.lightGreenAccent))),
                         onPressed: () {
                           _formKey.currentState?.validate() == true
-                              ? _performSignUp
+                              ? _performSignUp()
                               : null;
                           print('Name: $_name');
                           print('Email: $_email');

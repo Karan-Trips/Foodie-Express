@@ -85,7 +85,6 @@ class _Mainpage extends State<Mainpage> {
   }
 
   void navigateToProfile() {
-    // Perform asynchronous operations here
     print('Navigating to Profile');
   }
 
@@ -99,9 +98,9 @@ class _Mainpage extends State<Mainpage> {
   }
 
   void navigateToOrder() {
+    print('Navigating to Order');
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => const OrderStatusPage()));
-    print('Navigating to Order');
   }
 
   void navigateToAbout() {
@@ -151,10 +150,9 @@ class _Mainpage extends State<Mainpage> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              // Handle tap for the item at the given index
               print('Tapped on ${data[index]}');
               String tappedItem = data[index];
-              // You can add navigation or other actions here
+
               switch (tappedItem) {
                 case "Pizza":
                   print("Navigating to the Pizza section");
@@ -166,27 +164,26 @@ class _Mainpage extends State<Mainpage> {
                   break;
                 case "Burger":
                   print("Navigating to the Burger section");
-                  // Add Burger section navigation logic here
+
                   break;
                 case "Snacks":
                   print("Navigating to the Snacks section");
-                  // Add Snacks section navigation logic here
+
                   break;
                 case "Drinks":
                   print("Navigating to the Drinks section");
-                  // Add Drinks section navigation logic here
+
                   break;
                 case "Hot":
                   print("Navigating to the Hot section");
-                  // Add Hot section navigation logic here
+
                   break;
                 case "cake":
                   print("Navigating to the Cake section");
-                  // Add Cake section navigation logic here
+
                   break;
                 default:
                   print("Unknown data: $tappedItem");
-                // Handle the case when the tapped item is unknown
               }
             },
             child: Container(
@@ -231,14 +228,12 @@ class _Mainpage extends State<Mainpage> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            // return false when clicking on "NO"
             child: const Text('No'),
           ),
           TextButton(
             onPressed: () {
               logout();
             },
-            // return true when clicking on "Yes"
             child: const Text('Yes'),
           ),
         ],
@@ -300,9 +295,7 @@ class _Mainpage extends State<Mainpage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextField(
-                    onChanged: (value) {
-                      // filterSearchResults(value);
-                    },
+                    onChanged: (value) {},
                     autocorrect: true,
                     decoration: const InputDecoration(
                         filled: true,
@@ -526,7 +519,6 @@ class _Mainpage extends State<Mainpage> {
                     ],
                   ),
                 ),
-                // ##
                 SizedBox(
                   height: 250,
                   child: ListView.builder(
