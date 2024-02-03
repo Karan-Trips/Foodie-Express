@@ -10,7 +10,8 @@ class OrderStatusPage extends StatefulWidget {
 }
 
 class _OrderStatusPageState extends State<OrderStatusPage> {
-  OrderStatus orderStatus = OrderStatus.processing;
+  OrderStatus orderStatus =
+      OrderStatus.processing; //change according to firebase or random
   bool isRefreshing = false;
 
   Future<void> updateStatus() async {
@@ -71,10 +72,10 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
                       height: 20,
                     ),
                     isRefreshing
-                        ? CircularProgressIndicator() // Show loading indicator when refreshing
+                        ? const CircularProgressIndicator()
                         : ElevatedButton(
                             onPressed: updateStatus,
-                            child: Text("Refresh"),
+                            child: const Text("Refresh"),
                           ),
                   ],
                 ),

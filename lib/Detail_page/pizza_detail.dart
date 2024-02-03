@@ -113,7 +113,7 @@ class _PizzaListPageState extends State<PizzaListPage>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
     )..forward(); // Start the animation forward when the page loads
   }
 
