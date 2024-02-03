@@ -3,8 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:my_app/model/counter_class.dart';
 import 'package:my_app/screen/loginpages/login_page.dart';
 import 'package:my_app/screen/loginpages/signup.dart';
-import 'package:my_app/screen/splash_screen.dart';
-import 'package:my_app/screen/welcomepage.dart';
+import 'package:my_app/pages/splash_screen.dart';
+import 'package:my_app/pages/welcomepage.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 

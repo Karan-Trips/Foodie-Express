@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:my_app/Detail_page/pizza_detail.dart';
-import 'package:my_app/screen/cart_page.dart';
-import 'package:my_app/screen/detail_page.dart';
+import 'package:my_app/pages/cart_page.dart';
+import 'package:my_app/pages/detail_page.dart';
 
 class Mainpage extends StatefulWidget {
   final User user;

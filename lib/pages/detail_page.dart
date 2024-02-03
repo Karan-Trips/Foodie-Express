@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/model/cart_item.dart';
 import 'package:my_app/model/counter_class.dart';
-import 'package:my_app/screen/cart_page.dart';
+import 'package:my_app/pages/cart_page.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
