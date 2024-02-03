@@ -8,6 +8,7 @@ import 'package:my_app/Detail_page/order_status.dart';
 import 'package:my_app/Detail_page/pizza_detail.dart';
 import 'package:my_app/pages/cart_page.dart';
 import 'package:my_app/pages/detail_page.dart';
+import 'package:my_app/screen/loginpages/update_profile.dart';
 
 class Mainpage extends StatefulWidget {
   final User user;
@@ -86,6 +87,10 @@ class _Mainpage extends State<Mainpage> {
 
   void navigateToProfile() {
     print('Navigating to Profile');
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => UserUpdateProfile(user: widget.user)));
   }
 
   void navigateToCart() {
