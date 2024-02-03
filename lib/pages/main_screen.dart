@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:my_app/Detail_page/order_status.dart';
 import 'package:my_app/Detail_page/pizza_detail.dart';
 import 'package:my_app/pages/cart_page.dart';
 import 'package:my_app/pages/detail_page.dart';
@@ -89,7 +90,6 @@ class _Mainpage extends State<Mainpage> {
   }
 
   void navigateToCart() {
-    // Perform asynchronous operations here
     print('Navigating to Cart');
     Navigator.push(
         context,
@@ -99,17 +99,16 @@ class _Mainpage extends State<Mainpage> {
   }
 
   void navigateToOrder() {
-    // Perform asynchronous operations here
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const OrderStatusPage()));
     print('Navigating to Order');
   }
 
   void navigateToAbout() {
-    // Perform asynchronous operations here
     print('Navigating to About');
   }
 
   Future<void> logout() async {
-    // await _googleSignIn.signOut();
     await GoogleSignIn().disconnect();
     FirebaseAuth.instance.signOut();
     SystemNavigator.pop();
