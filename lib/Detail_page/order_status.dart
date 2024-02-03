@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
-enum OrderStatus { processing, outForOrder, delivered }
+enum OrderStatus {
+  processing,
+  outForOrder,
+  delivered,
+}
 
 class OrderStatusPage extends StatefulWidget {
   const OrderStatusPage({Key? key}) : super(key: key);
@@ -11,7 +15,7 @@ class OrderStatusPage extends StatefulWidget {
 
 class _OrderStatusPageState extends State<OrderStatusPage> {
   OrderStatus orderStatus =
-      OrderStatus.processing; //change according to firebase or random
+      OrderStatus.outForOrder; //change according to firebase or random
   bool isRefreshing = false;
 
   Future<void> updateStatus() async {
@@ -22,9 +26,13 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
     await Future.delayed(const Duration(seconds: 2));
 
     setState(() {
-      orderStatus = OrderStatus.delivered;
+      orderStatus = _getRandomOrderStatus();
       isRefreshing = false;
     });
+  }
+
+  OrderStatus _getRandomOrderStatus() {
+    return OrderStatus.outForOrder;
   }
 
   String getOrderStatusText() {
@@ -48,8 +56,11 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
         onRefresh: updateStatus,
         child: Column(
           children: [
-            const SizedBox(
-              height: 350,
+            ClipOval(
+              child: SizedBox(
+                height: 350,
+                child: ClipOval(child: Image.asset('images/order.png')),
+              ),
             ),
             SizedBox(
               child: Center(
@@ -69,7 +80,7 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
                           fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 50,
                     ),
                     isRefreshing
                         ? const CircularProgressIndicator()
