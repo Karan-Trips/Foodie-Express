@@ -4,7 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:my_app/Detail_page/order_status.dart';
+// import 'package:my_app/Detail_page/order_status.dart';
+import 'package:my_app/Detail_page/order_tracking.dart';
 import 'package:my_app/Detail_page/pizza_detail.dart';
 import 'package:my_app/pages/cart_page.dart';
 import 'package:my_app/pages/detail_page.dart';
@@ -105,7 +106,7 @@ class _Mainpage extends State<Mainpage> {
   void navigateToOrder() {
     print('Navigating to Order');
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const OrderStatusPage()));
+        MaterialPageRoute(builder: (context) => const OrderTracking()));
   }
 
   void navigateToAbout() {
@@ -345,6 +346,8 @@ class _Mainpage extends State<Mainpage> {
                     ],
                   ),
                 ),
+
+                ///Popular section check kar lena for pizza and other pages
                 SizedBox(
                   height: 250,
                   child: ListView.builder(

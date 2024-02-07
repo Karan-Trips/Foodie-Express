@@ -17,6 +17,9 @@ class _SignUpPageState extends State<SignUpPage> {
   String _name = '';
   String _email = '';
   String _password = '';
+  String street = '';
+  String city = '';
+  String nearby = '';
 
   Future<void> _performSignUp() async {
     try {
@@ -31,6 +34,9 @@ class _SignUpPageState extends State<SignUpPage> {
           .set({
         'name': _name,
         'email': _email,
+        'street': "",
+        'city': "",
+        'nearby': "",
       });
       await userCredential.user!.updateDisplayName(_name);
 
@@ -160,9 +166,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           _formKey.currentState?.validate() == true
                               ? _performSignUp()
                               : null;
-                          print('Name: $_name');
-                          print('Email: $_email');
-                          print('Password: $_password');
+                          // print('Name: $_name');
+                          // print('Email: $_email');
+                          // print('Password: $_password');
                         },
                         child: const Center(child: Text('Sign Up')),
                       ),

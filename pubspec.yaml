@@ -28,15 +28,18 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  another_stepper: ^1.2.2
   cloud_firestore: ^4.13.6
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.15.3
   firebase_core: ^2.24.2
+  firebase_storage: ^11.6.4
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.13.1
   flutter_signin_button: ^2.0.0
   google_sign_in: ^6.2.1
+  image_picker: ^1.0.7
   intl: any
   provider: ^6.1.1
   svg_flutter: ^0.0.1
