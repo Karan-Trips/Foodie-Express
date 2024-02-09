@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:my_app/Funtionnalities/signup_controller.dart';
 import 'package:my_app/screen/loginpages/login_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -17,47 +18,6 @@ class _SignUpPageState extends State<SignUpPage> {
   String _name = '';
   String _email = '';
   String _password = '';
-  String street = '';
-  String city = '';
-  String nearby = '';
-
-  Future<void> _performSignUp() async {
-    try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _email,
-        password: _password,
-      );
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(userCredential.user!.uid)
-          .set({
-        'name': _name,
-        'email': _email,
-        'street': "",
-        'city': "",
-        'nearby': "",
-      });
-      await userCredential.user!.updateDisplayName(_name);
-
-      print('Sign up successful: ${userCredential.user!.email}');
-      print('Name: ${userCredential.user!.displayName}');
-
-      // ignore: use_build_context_synchronously
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const LoginPage(),
-          ));
-    } catch (e) {
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Sign up failed. Please try again.'),
-        ),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,12 +123,15 @@ class _SignUpPageState extends State<SignUpPage> {
                                 side: BorderSide(
                                     color: Colors.lightGreenAccent))),
                         onPressed: () {
-                          _formKey.currentState?.validate() == true
-                              ? _performSignUp()
-                              : null;
-                          // print('Name: $_name');
-                          // print('Email: $_email');
-                          // print('Password: $_password');
+                          if (_formKey.currentState?.validate() == true) {
+                            SignUpHandler signUpHandler = SignUpHandler(
+                              context: context,
+                              name: _name,
+                              email: _email,
+                              password: _password,
+                            );
+                            signUpHandler.performSignUp();
+                          }
                         },
                         child: const Center(child: Text('Sign Up')),
                       ),

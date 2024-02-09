@@ -23,9 +23,15 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -59,27 +65,5 @@ class DefaultFirebaseOptions {
     messagingSenderId: '875017917221',
     projectId: 'food-delivery-43e52',
     storageBucket: 'food-delivery-43e52.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD8pLd0bKzpHF9l1PgOgx13bO36WtK6jfw',
-    appId: '1:875017917221:ios:8b67d88f0b78ca2f3dc0cc',
-    messagingSenderId: '875017917221',
-    projectId: 'food-delivery-43e52',
-    storageBucket: 'food-delivery-43e52.appspot.com',
-    androidClientId: '875017917221-j6smg6tp7cv7vuvulf5a25j86fmabdip.apps.googleusercontent.com',
-    iosClientId: '875017917221-h6foc8gagm1ou56uk59sie9epi3d1tct.apps.googleusercontent.com',
-    iosBundleId: 'com.example.myApp',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD8pLd0bKzpHF9l1PgOgx13bO36WtK6jfw',
-    appId: '1:875017917221:ios:62444c82865ea2b93dc0cc',
-    messagingSenderId: '875017917221',
-    projectId: 'food-delivery-43e52',
-    storageBucket: 'food-delivery-43e52.appspot.com',
-    androidClientId: '875017917221-j6smg6tp7cv7vuvulf5a25j86fmabdip.apps.googleusercontent.com',
-    iosClientId: '875017917221-fe2j9d4bj45u6drro2b38fl0mehm353m.apps.googleusercontent.com',
-    iosBundleId: 'com.example.myApp.RunnerTests',
   );
 }

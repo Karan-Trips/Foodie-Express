@@ -2,9 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-// import 'package:my_app/Detail_page/order_status.dart';
 import 'package:my_app/Detail_page/order_tracking.dart';
 import 'package:my_app/Detail_page/pizza_detail.dart';
 import 'package:my_app/pages/cart_page.dart';
@@ -114,9 +111,11 @@ class _Mainpage extends State<Mainpage> {
   }
 
   Future<void> logout() async {
-    await GoogleSignIn().disconnect();
-    FirebaseAuth.instance.signOut();
-    SystemNavigator.pop();
+    // SystemNavigator.pop();
+    // await GoogleSignIn().disconnect();
+    // FirebaseAuth.instance.signOut();
+
+    Navigator.pushReplacementNamed(context, "/home");
   }
 
   Widget _catagories() {

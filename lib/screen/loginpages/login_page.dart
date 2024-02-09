@@ -2,9 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:my_app/Funtionnalities/login_controller.dart';
 import 'package:my_app/pages/main_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,37 +14,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // LoginLogic loginLogic = LoginLogic(context);
   final _formKey = GlobalKey<FormState>();
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   String _email = '';
   String _password = '';
 
-  // Function to perform login logic
-  void _performLogin() async {
-    try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _email,
-        password: _password,
-      );
-      User? user = userCredential.user;
-
-      print('Login successful: ${user!.email}');
-      // ignore: use_build_context_synchronously
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => Mainpage(user: user)),
-      );
-    } catch (e) {
-      print('Login failed: $e');
-      // Handle login errors
-    }
-  }
-
   void nextPage(user) {
-    // Navigate to the next page, passing the user information if needed
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -58,6 +32,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    LoginLogic loginLogic = LoginLogic(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -149,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   // Call the function to perform login logic
-                                  _performLogin();
+                                  loginLogic.performLogin(_email, _password);
                                 }
                               },
                               child: const Text('Login'),
@@ -170,7 +145,9 @@ class _LoginPageState extends State<LoginPage> {
                             shape: const StadiumBorder(),
                             Buttons.Google,
                             text: 'Login with Google',
-                            onPressed: googlelogin,
+                            onPressed: () {
+                              loginLogic.googleLogin();
+                            },
                           ),
                           const SizedBox(
                             height: 25,
@@ -194,34 +171,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-
-  googlelogin() async {
-    try {
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
-
-      final UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
-      final User? user = userCredential.user;
-
-      // Check if sign-in was successful
-      if (user != null) {
-        print('User signed in successfully: ${user.email}');
-
-        nextPage(user);
-      } else {
-        print('Sign in failed');
-      }
-    } catch (e) {
-      // Handle errors
-      print('Error: $e');
-    }
   }
 }

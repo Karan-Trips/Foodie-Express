@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:my_app/pages/main_screen.dart';
+import 'package:my_app/pages/welcomepage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,8 +16,22 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, '/home');
+    Future.delayed(const Duration(seconds: 2), () async {
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        var userId = user.uid;
+        print(userId);
+        saveUserLoggedInStatus(true);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Mainpage(user: user),
+          ),
+        );
+      } else {
+        Navigator.pushReplacementNamed(context, '/home');
+      }
     });
   }
 
@@ -58,5 +76,10 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           )),
     );
+  }
+
+  Future<void> saveUserLoggedInStatus(bool isLoggedIn) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isLoggedIn', isLoggedIn);
   }
 }
