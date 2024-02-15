@@ -1,7 +1,10 @@
+// ignore_for_file: avoid_print, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:my_app/pages/main_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginLogic {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -31,7 +34,7 @@ class LoginLogic {
       );
     } catch (e) {
       print('Login failed: $e');
-      // Handle login errors
+      
     }
   }
 
@@ -63,6 +66,18 @@ class LoginLogic {
       }
     } catch (e) {
       print('Error: $e');
+    }
+  }
+}
+
+class Sharedpref {
+  Future<void> saveUserLoggedInStatus(bool isLoggedIn) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    if (isLoggedIn) {
+      prefs.setBool('save', true);
+    } else {
+      prefs.remove('save');
     }
   }
 }

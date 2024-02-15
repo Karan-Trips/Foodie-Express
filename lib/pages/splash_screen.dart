@@ -1,8 +1,9 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:my_app/Funtionnalities/Funtions_navigation/auth/login_controller.dart';
 import 'package:my_app/pages/main_screen.dart';
-import 'package:my_app/pages/welcomepage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,6 +13,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Sharedpref sp = Sharedpref();
   @override
   void initState() {
     super.initState();
@@ -22,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (user != null) {
         var userId = user.uid;
         print(userId);
-        saveUserLoggedInStatus(true);
+        sp.saveUserLoggedInStatus(true);
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -30,6 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         );
       } else {
+        sp.saveUserLoggedInStatus(false);
         Navigator.pushReplacementNamed(context, '/home');
       }
     });
@@ -76,10 +79,5 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           )),
     );
-  }
-
-  Future<void> saveUserLoggedInStatus(bool isLoggedIn) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('isLoggedIn', isLoggedIn);
   }
 }

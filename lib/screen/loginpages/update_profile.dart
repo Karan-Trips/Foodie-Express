@@ -23,6 +23,7 @@ class _UserUpdateProfileState extends State<UserUpdateProfile> {
   late TextEditingController streetNo;
   late TextEditingController city;
   late TextEditingController nearby;
+  late TextEditingController phoneno;
 
   @override
   void initState() {
@@ -32,6 +33,7 @@ class _UserUpdateProfileState extends State<UserUpdateProfile> {
     streetNo = TextEditingController();
     city = TextEditingController();
     nearby = TextEditingController();
+    phoneno = TextEditingController();
   }
 
   @override
@@ -149,13 +151,13 @@ class _UserUpdateProfileState extends State<UserUpdateProfile> {
         'street': streetNo.text,
         'city': city.text,
         'nearby': nearby.text,
+        "phone": phoneno.text,
       });
 
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Profile updated successfully'),
       ));
       // Navigator.pop(context);
-      
     } catch (error) {
       print('Error updating profile: $error');
     }

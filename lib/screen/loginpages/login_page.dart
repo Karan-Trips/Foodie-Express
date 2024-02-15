@@ -1,8 +1,9 @@
 // ignore_for_file: avoid_print
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:my_app/Funtionnalities/login_controller.dart';
+import 'package:my_app/Funtionnalities/Funtions_navigation/auth/login_controller.dart';
 import 'package:my_app/pages/main_screen.dart';
 
 class LoginPage extends StatefulWidget {
@@ -28,6 +29,16 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  Future forgotPassword({required String email}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (err) {
+      throw Exception(err.message.toString());
+    } catch (err) {
+      throw Exception(err.toString());
+    }
   }
 
   @override
@@ -152,14 +163,23 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(
                             height: 25,
                           ),
-                          SignInButton(
-                            Buttons.GitHub,
-                            onPressed: () {},
-                            padding: const EdgeInsets.all(10),
-                            elevation: 10,
-                            shape: const StadiumBorder(),
-                            text: 'Login with GitHub',
-                          )
+                          TextButton(
+                              onPressed: () {
+                                forgotPassword(email: _email);
+                              },
+                              child: Text("Forget password")),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          // SignInButton(
+                          //   Buttons.FacebookNew,
+                          //   mini: true,
+                          //   onPressed: () {},
+                          //   padding: const EdgeInsets.all(10),
+                          //   elevation: 10,
+                          //   shape: const StadiumBorder(),
+                          //   text: 'Login with GitHub',
+                          // )
                         ],
                       ),
                     ),

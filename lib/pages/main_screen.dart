@@ -1,12 +1,16 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:my_app/Detail_page/order_tracking.dart';
 import 'package:my_app/Detail_page/pizza_detail.dart';
+import 'package:my_app/Funtionnalities/Funtions_navigation/auth/login_controller.dart';
 import 'package:my_app/pages/cart_page.dart';
 import 'package:my_app/pages/detail_page.dart';
 import 'package:my_app/screen/loginpages/update_profile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Mainpage extends StatefulWidget {
   final User user;
@@ -18,6 +22,7 @@ class Mainpage extends StatefulWidget {
 }
 
 class _Mainpage extends State<Mainpage> {
+  Sharedpref sp = Sharedpref();
   late User user;
   bool isloggedin = false;
   List<String> data = [
@@ -111,11 +116,17 @@ class _Mainpage extends State<Mainpage> {
   }
 
   Future<void> logout() async {
-    // SystemNavigator.pop();
-    // await GoogleSignIn().disconnect();
-    // FirebaseAuth.instance.signOut();
+    try {
+      await GoogleSignIn().disconnect();
+    } on PlatformException catch (e) {
+      print("Google Sign-In disconnect failed: ${e.message}");
+    }
 
     Navigator.pushReplacementNamed(context, "/home");
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.clear();
+
+    sp.saveUserLoggedInStatus(false);
   }
 
   Widget _catagories() {

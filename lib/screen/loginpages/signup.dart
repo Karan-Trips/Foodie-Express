@@ -1,10 +1,7 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:my_app/Funtionnalities/signup_controller.dart';
-import 'package:my_app/screen/loginpages/login_page.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:my_app/Funtionnalities/Funtions_navigation/auth/signup_controller.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
